@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI E-Commerce Recommendation Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🛒 Smart Product Recommendation</h1>
+        <p class="subtitle">
+            AI-enabled personalized recommendations based on customer purchase history
+        </p>
+
+        <form method="POST">
+            <input type="text" name="customer_id" placeholder="Enter Customer ID" required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if recommendations %}
+        <h2>Recommended Products</h2>
+        <div class="cards">
+            {% for product in recommendations %}
+            <div class="card">
+                <h3>{{ product.Description }}</h3>
+                <p><strong>Product ID:</strong> {{ product.StockCode }}</p>
+                <p><strong>Price:</strong> ₹{{ product.UnitPrice }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>AI Enabled Recommendation Engine | Demo Project</p>
+    </footer>
+
+</body>
+
+</html>
